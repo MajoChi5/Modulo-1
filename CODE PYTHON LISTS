@@ -1,0 +1,357 @@
+""" Ejercicio 1
+Lee lista y muestra
+Diseña y codifica un programa en Python en el cual el usuario ingrese la cantidad de elementos que va a ingresar a la lista, posteriormente el programa debe leer cada uno de los elementos de la lista, uno por línea y se van agregando a la lista.
+
+Importante: El programa debe validar que el número de elementos a ingresar sea mayor que cero, sino debe volver a pedir el valor hasta que cumpla.
+
+Entradas
+
+Número entero n que corresponde al número de elementos a ingresar a la lista. Debe ser mayor a 0 de lo contrario se solicitará de nuevo hasta que se cumpla la condición.
+
+Posteriormente se reciben los n elementos de la lista, uno en cada renglón.
+"""
+  # Función leer_n () para pedir al usuario cuántos elementos va a tener la lista
+def leer_n ():
+# ciclo infinito para validar que el número de elementos a ingresar sea mayor que cero
+  while True:
+  # repetir mientras el número de elementos a ingresar sea menor o igual a cero
+    try:
+# leer el número de elementos entero positivo "Ingrese la cantidad de elementos a agregar a la lista (mayor que 0): "
+      elementos=int(input("Ingrese la cantidad de elementos a agregar a la lista (mayor que 0): "))
+         # si el número de elementos a ingresar es mayor que cero, salir del ciclo
+      if elementos>0:
+        return elementos
+          # si el número de elementos a ingresar es menor o igual a cero, volver a preguntar "Tiene que ingresar un número de elementos mayor a 0, intente de nuevo"
+      else:
+        print("Tiene que ingresar un número de elementos mayor a 0, intente de nuevo")
+        # si el usuario ingresa un valor no numérico, imprimir "ERROR"
+    except ValueError:
+        print("ERROR")
+
+  # Definir la función leer_lista con parámetro elementos
+def leer_lista_float(elementos):
+    # crear una lista vacía
+    lista=[]
+    # Ciclo para leer los elementos y agregarlos a la lista
+    for i in range(elementos):
+      while True:
+        try:
+          # leer el elemlista de tipo flotante f"Ingrese el elemento {i + 1}: "
+          elemlista=float(input(f"Ingrese el elemento {i + 1}: "))
+          # agregar el elemento elemlista al final de la lista
+          lista.append(elemlista)
+          break
+        except ValueError:
+          print("ERROR")
+    # regresa la lista creada
+    return lista
+
+def leer_lista_str(elementos):
+    # crear una lista vacía
+    lista=[]
+    # Ciclo para leer los elementos y agregarlos a la lista
+    for i in range(elementos):
+      # leer el elemlista de tipo flotante f"Ingrese el elemento {i + 1}: "
+      elemlista=input(f"Ingrese el elemento {i + 1} (cadena de texto): ")
+      # agregar el elemento elemlista al final de la lista
+      lista.append(elemlista)
+    # regresa la lista creada
+    return lista
+
+# defnir la función para imprimir la lista imprime_lista(lista)
+def imprime_lista(lista):
+  """
+  El programa debe desplegar los elementos ingresados en la siguiente forma:
+
+lista[0] = 1
+
+lista[1] = 2
+
+lista[2] = 3
+
+lista[3] = 4
+
+lista[4] = 5
+"""
+  # Ciclo para imprimir f"lista[{i}] = {lista[i]}" cada elemento de la lista con su posición en la lista
+  for i in range(len(lista)):
+    print(f"lista[{i}]={lista[i]}")
+
+# defnir función imprime_ultimo(lista) que regresa el último elemento
+def ultimo_lista(lista):
+  # regresa el último elemento de la lista
+  return lista[-1]
+
+# definir la función suma_lista(lista) que regresa la suma de los elementos de la lista
+
+def suma_lista(lista):
+  # regresa la suma
+  return sum(lista)
+
+# definir la función promedio_lista(lista) que regresa el promedio de los elementos de la lista
+def promedio_lista(lista):
+  return sum(lista)/len(lista)
+
+"""
+  El programa debe desplegar los elementos ingresados en forma inversa, el indice mayor al menor y en el siguiente formato:
+
+  lista[-1] = 5
+
+  lista[-2] = 4
+
+  lista[-3] = 3
+
+  lista[-4] = 2
+
+  lista[-5] = 1 
+  """
+# defnir la función lista_inversa(lista) que invierte las localidades de la lista
+def lista_inversa(lista):
+  # crear lista_inv vacía
+  lista_inv=[]
+  # ciclo para agregar los elementos de lista en orden inverso a lista_inv desde el tamaño de la lista hasta la localidad -1, con decremento en 1
+  for i in range(len(lista)-1,-1,-1):
+    # agregar el elemento lista[i] al final de la lista_inv
+    lista_inv.append(lista[i])
+  # retorna la lista invertida
+  return lista_inv
+
+# definir la función max_lista con parámetro lista
+def max_lista(lista):
+  return max(lista)
+
+# definir la función min_lista con parámetro lista
+def min_lista(lista):
+  return min(lista)
+
+# definir la función lista_az con parámetro lista
+def lista_az(lista):
+ return sorted(lista)
+
+"""Ejercicio 3: Contar pares o impares en una lista simple
+Desarrolla el programa que determine el total de valores pares e impares de una lista 
+de números enteros que recibirá en su entrada. Los valores los captura el usuario uno 
+por uno, se van almacenando en una lista y posteriormente se analizará la lista para 
+determinar cuantos valores pares e impares posee. Consideramos al 0 como par."""
+
+def par_impar(lista):
+  "Se despliega el numero de pares e impares que variables para contar pares (par) e impares"
+  pares = 0
+  impares = 0
+  # Ciclo para analizar cada número en la lista
+  for num in lista:
+      # Si el número es par (incluyendo el 0)
+      if num % 2 == 0:
+          pares += 1
+      else:
+          impares += 1
+  # Mostramos el resultado
+  print(f"PARES={pares}")
+  print(f"IMPARES={impares}")
+
+"""Ejercicio 4 : Lista al cuadrado
+Escribe un programa que reciba del usuario un número entero que representa la cantidad
+de números que va a ingresar. El programa deberá recibir esa cantidad de números 
+enteros, los colocará en una lista y la desplegará a pantalla. Posteriormente deberá 
+construir una nueva lista, con el cuadrado de cada uno de los elementos de la lista 
+del usuario."""
+
+def cuadrado_lista(lista):
+  # Función que devuelve una lista con los cuadrados de los elementos
+  lista_cuadrada = [x**2 for x in lista]
+  return lista_cuadrada
+
+# Función para el ejercicio 5.1: Cuántas empiezan con...
+"""Ejercicio 5 : Cuántas empiezan con...
+Escribe un programa determine cuántas palabras de una lista empiezan con una 
+determinada letra."""
+def Cuantas_comienzan():
+    palabras = []
+
+    # Ingresar 5 palabras
+    for i in range(5):
+        palabra = input(f"Ingrese la palabra {i+1}: ")
+        palabras.append(palabra)
+
+    letra = input("Ingrese la letra para contar coincidencias: ").lower()
+
+    # Contar cuántas palabras empiezan con la letra
+    contador = sum(1 for palabra in palabras if palabra.lower().startswith(letra))
+
+    # Mostrar resultado
+    print(contador)
+
+"""Ejercicio 5 : Suma dos listas por posición
+Desarrolla un programa que permita realizar la suma elemento a elemento de dos listas 
+de números enteros y con la misma cantidad de elementos."""
+
+# Función para el ejercicio 5.2: Suma dos listas por posición
+def suma_dos_listas():
+    # Paso 1: Leer el número de elementos
+    n = int(input("Ingrese la cantidad de elementos de las listas: "))
+
+    # Paso 2: Validar que el número sea mayor a 0
+    if n <= 0:
+        print("Error")
+        return
+
+    # Paso 3: Leer los elementos de la primera lista
+    lista1 = []
+    print("Ingrese los elementos de la primera lista:")
+    for i in range(n):
+        lista1.append(int(input(f"Elemento {i + 1}: ")))
+
+    # Paso 4: Leer los elementos de la segunda lista
+    lista2 = []
+    print("Ingrese los elementos de la segunda lista:")
+    for i in range(n):
+        lista2.append(int(input(f"Elemento {i + 1}: ")))
+
+    # Paso 5: Sumar las listas por posición
+    lista_suma = [lista1[i] + lista2[i] for i in range(n)]
+
+    # Paso 6: Mostrar la lista resultante
+    print(lista_suma)
+
+"""Ejercicio 6 : Sublistas de pares e impares
+Desarrolla un programa que permitirá obtener a partir de una lista que recibirá del 
+usuario, crear y desplegar una sublista con valores pares y otra sublista con valores 
+impares."""
+
+# Función para el ejercicio 6: Sublistas de pares e impares
+def sublista_pares_impares():
+    lista = []
+
+    # Capturar valores hasta que el usuario ingrese '*'
+    while True:
+        entrada = input("Ingrese un número entero o '*' para terminar: ")
+        if entrada == "*":
+            break
+        try:
+            lista.append(int(entrada))
+        except ValueError:
+            print("Entrada inválida. Ingrese un número entero.")
+
+    # Separar en pares e impares
+    pares = [num for num in lista if num % 2 == 0]
+    impares = [num for num in lista if num % 2 != 0]
+
+    # Mostrar resultado
+    print("PARES")
+    print(pares)
+    print("IMPARES")
+    print(impares)
+
+"""Ejercicio 7 : Pares y posición
+Escribe un programa que lea la cantidad de elementos que vas a ingresar de la lista,
+
+posteriormente cada uno de los elementos de la lista que son números enteros.
+
+El programa después debe revisar la lista y para cada uno de los valores pares que 
+encuentre mostrar un mensaje que contenga la posición y el valor del numero par. 
+Observa los ejemplos.
+
+ """
+# Función para el ejercicio 7: Pares y posición
+def pares_posicion():
+    n = int(input("Ingrese la cantidad de elementos de la lista: "))
+
+    lista = []
+    for i in range(n):
+        lista.append(int(input(f"Ingrese el elemento {i+1}: ")))
+
+    # Mostrar posición y valor de los pares
+    for i in range(n):
+        if lista[i] % 2 == 0:
+            print(f"pos {i}, valor {lista[i]}")
+
+"""Ejercicio 8 : Sin duplicados
+Escribe un programa que reciba del usuario una lista y devuelva otra con los elementos
+de la lista original, pero sin elementos duplicados.
+"""
+# Función para el ejercicio 8: Sin duplicados
+def sin_duplicados():
+    n = int(input("Ingrese la cantidad de elementos de la lista: "))
+
+    if n <= 0:
+        print("Error")
+        return
+
+    lista = []
+    for i in range(n):
+        lista.append(input(f"Ingrese el elemento {i+1}: "))
+
+    # Mostrar lista original
+    print(lista)
+
+    # Remover duplicados
+    lista_sin_duplicados = list(dict.fromkeys(lista))
+
+    # Mostrar lista sin duplicados
+    print(lista_sin_duplicados)
+
+def menu():
+  print("Seleccione el número del ejercicio que desea resolver:")
+  print("1. Leer lista y mostrar")
+  print("2. Último elemento de la lista")
+  print("3. Pares e impares")
+  print("4. Lista al cuadrado")
+  print("5. Cuántas palabras comienzan con una letra")
+  print("6. Suma de dos listas")
+  print("7. Sublistas de pares e impares")
+  print("8. Pares y su posición")
+  print("9. Sin duplicados")
+  seleccion = int(input("Ingrese el número del ejercicio que desea ejecutar: "))
+  return seleccion
+
+def main():
+      seleccion = menu()
+      # Ejecuta el ejercicio basado en la selección
+      if seleccion == 1:
+          elementos = leer_n()  # Pedir el número de elementos de la lista
+          lista = leer_lista_float(elementos)  # Leer la lista de números flotantes
+          imprime_lista(lista)  # Mostrar la lista
+          # Muestra el último elemento ultimo_lista de la lista
+          print(ultimo_lista(lista))
+          # Despliega la suma los terminos de la lista
+          print(suma_lista(lista))
+          # Despliega promedio de la lista
+          print(promedio_lista(lista))
+
+      elif seleccion == 2:
+          elementos = leer_n()
+          lista = leer_lista_float(elementos)
+          lista_inv=lista_inversa(lista)
+          # Imprime con un ciclo cada elemento de la lista f"lista[{-1-i}] = {lista_inv[i]}"
+          for i in range(len(lista_inv)):
+            print(f"lista[{-1-i}]={lista_inv[i]}")
+          # Desplegar el valor mayor de todos los elementos de la lista
+          print(max_lista(lista))
+          # Desplegar el valor menor de todos los elementos de la lista
+          print(min_lista(lista))
+          # Despliega la lista ordenada de menor a mayor.
+          print(lista_az(lista))
+
+      elif seleccion == 3:
+          elementos = leer_n()
+          lista = leer_lista_float(elementos)
+          par_impar(lista)
+      elif seleccion == 4:
+          elementos = leer_n()
+          lista = leer_lista_float(elementos)
+          print(f"Lista al cuadrado: {cuadrado_lista(lista)}")
+      elif seleccion == 5:
+          Cuantas_comienzan()
+      elif seleccion == 6:
+        suma_dos_listas()
+      elif seleccion == 7:
+          sublista_pares_impares()
+      elif seleccion == 8:
+          pares_posicion()
+      elif seleccion == 9:
+          sin_duplicados()
+      else:
+          print("Opción no válida. Por favor, seleccione un número entre 1 y 9.")
+
+# Ejecutar el programa
+main()          
