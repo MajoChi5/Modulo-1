@@ -1,0 +1,210 @@
+"""RETO 1 : Serie de fibonacci en una lista
+Diseña y codifica un programa en Python que lea la cantidad de
+n elementos que desea tener en la lista.
+
+El programa debe validar que n sea mayor o igual que 0, de lo contrario
+lo vuelve a solicitar. Como resultado, se debe desplegar la lista con los
+primeros n elementos de la serie de Fibonacci."""
+
+def numero_elementos_listas():
+    # Crear un ciclo infinito para confirmar que el número es mayor a 0
+    while True:
+        try:
+            numeros = int(input("Ingrese el número de elementos que desea en la serie (mayor o igual a 0): "))
+            if numeros >= 0:  # El número debe ser mayor o igual a 0
+                return numeros
+            else:
+                print("Tiene que ingresar un número de elementos mayor o igual a 0. Intente de nuevo.")
+        except ValueError:
+            # Si el usuario ingresa un valor no numérico, imprimir "ERROR"
+            print("ERROR: Debe ingresar un número entero válido.")
+
+def generar_fibonacci(numeros):
+    # Crear una lista vacía para la serie de Fibonacci
+    lista = []
+    # Verificar si se deben generar elementos
+    if numeros == 0:
+        return lista
+    elif numeros == 1:
+        return [0]
+    
+    # Añadir los primeros dos elementos de Fibonacci
+    a, b = 0, 1
+    lista.append(a)
+    lista.append(b)
+    
+    # Generar los siguientes elementos
+    for i in range(2, numeros):
+        a, b = b, a + b  # Calcular el siguiente número de Fibonacci
+        lista.append(b)
+    
+    return lista
+
+def Fibonacci():
+    # Obtener el número de elementos para la lista
+    numeros = numero_elementos_listas()
+    # Generar la lista de Fibonacci
+    lista_fibonacci = generar_fibonacci(numeros)
+    # Mostrar la lista generada
+    print(f"La lista de Fibonacci con {numeros} elementos es: {lista_fibonacci}")
+    
+"""RETO 2: Mezcla y ordena listas
+Desarrolla un programa que permitirá obtener una lista ordenada de menor a mayor
+a partir de dos listas. Los valores individuales de las listas de entrada los captura
+el usuario uno por uno y posteriormente se unirán ambas listas para obtener una sola lista
+ordenada de menor a mayor."""
+
+def lista_1():
+    numeros = numero_elementos_listas()  # Obtener número de elementos
+    lista1 = []  # Crear una lista vacía
+    # Ciclo para leer los elementos y agregarlos a la lista
+    for i in range(numeros):
+        while True:
+            try:
+                elemlista = float(input(f"Ingrese el elemento {i + 1}: "))
+                lista1.append(elemlista)
+                break
+            except ValueError:
+                print("ERROR: Debe ingresar un número válido.")
+    return lista1
+
+def lista_2():
+    numeros_2 = numero_elementos_listas()  # Obtener número de elementos
+    lista2 = []  # Crear una lista vacía
+    # Ciclo para leer los elementos y agregarlos a la lista
+    for i in range(numeros_2):
+        while True:
+            try:
+                elemlista_2 = float(input(f"Ingrese el elemento {i + 1}: "))
+                lista2.append(elemlista_2)
+                break
+            except ValueError:
+                print("ERROR: Debe ingresar un número válido.")
+    return lista2
+
+def Mezcla_ordena():
+    lista1 = lista_1()  # Obtener lista 1
+    lista2 = lista_2()  # Obtener lista 2
+    
+    # Combinar ambas listas
+    lista_completa = lista1 + lista2
+    
+    # Ordenar la lista combinada
+    lista_ordenada = sorted(lista_completa)
+  
+    print("LORDENADA=")
+    print(lista_ordenada)
+    
+"""RETO 3 : Combina listas
+Escribe un programa que combine dos listas de strings
+que recibas del usuario. El programa debe funcionar de la siguiente manera:
+
+- Recibe un numero entero correspondiente a la cantidad de elementos que
+el usuario va a agregar en la primera lista.
+
+- Recibe un número entero correspondiente a la cantidad de elementos que
+el usuario va a agregar en la segunda lista.
+
+- Ambos números deben ser mayores a 0, en caso de no serlo, se imprime
+el mensaje “Error”
+
+- En caso de que si sean mayores a 0:
+
+----Imprime 5 guiones
+
+----Recibe la cantidad de datos necesaria para la primera lista.
+
+----Imprime 5 guiones
+
+----Recibe la cantidad de datos necesaria para la segunda lista.
+
+----Imprime 5 guiones
+
+----Imprime la lista 1
+
+----Imprime la lista 2
+
+----Imprime la lista combinada
+
+Es importante que consideres que siempre se empieza a combinar
+por la lista 1 y recuerda que las listas pueden ser de distintos tamaños"""
+
+def capturar_lista(cantidad, nombre_lista):
+    """
+    Función que captura una lista de strings basada en la cantidad especificada.
+    """
+    lista = []
+    print("-----")  # Imprimir 5 guiones
+    for i in range(cantidad):
+        elemento = input(f"Ingrese el elemento {i + 1} de la {nombre_lista}: ")
+        lista.append(elemento)
+    return lista
+
+def combinar_listas(lista1, lista2):
+    """
+    Combina dos listas alternando elementos de ambas listas. 
+    Si una lista es más larga, se concatenan sus elementos restantes.
+    """
+    lista_combinada = []
+    max_length = max(len(lista1), len(lista2))
+
+    for i in range(max_length):
+        if i < len(lista1):
+            lista_combinada.append(lista1[i])
+        if i < len(lista2):
+            lista_combinada.append(lista2[i])
+    
+    return lista_combinada
+
+def combina_listas():
+    """
+    Implementación del Reto 3: Combina dos listas de strings ingresadas por el usuario.
+    """
+    try:
+        # Solicitar la cantidad de elementos para la primera lista
+        cantidad_1 = int(input("Ingrese la cantidad de elementos que desea agregar en la primera lista: "))
+        # Solicitar la cantidad de elementos para la segunda lista
+        cantidad_2 = int(input("Ingrese la cantidad de elementos que desea agregar en la segunda lista: "))
+
+        # Verificar que ambas cantidades sean mayores a 0
+        if cantidad_1 <= 0 or cantidad_2 <= 0:
+            print("Error")
+            return
+        
+        # Capturar la primera lista
+        lista1 = capturar_lista(cantidad_1, "primera lista")
+        
+        # Capturar la segunda lista
+        lista2 = capturar_lista(cantidad_2, "segunda lista")
+        
+        # Combinar las listas
+        lista_combinada = combinar_listas(lista1, lista2)
+        
+        # Imprimir las listas y la lista combinada
+        print("-----")
+        print("Lista 1:")
+        print(lista1)
+        print("Lista 2:")
+        print(lista2)
+        print("Lista combinada:")
+        print(lista_combinada)
+        
+    except ValueError:
+        # Si hay un error al convertir la entrada a entero
+        print("Error: Debe ingresar un número entero válido.")
+
+    
+def menu():
+    Eleccion=int(input("Seleccione un numero del 1 al 3 para el ejercicio: \n 1.Espiral de fibonacci \n 2.Mezcla y Ordena \n 3.Combinar listas \n Selecccione: "))
+    if Eleccion== 1:
+        Fibonacci()
+    elif Eleccion == 2:
+        Mezcla_ordena()
+    elif Eleccion == 3:
+        combina_listas()
+    else:
+        print("ERROR")
+        
+
+# Llamada al menú principal
+menu()
